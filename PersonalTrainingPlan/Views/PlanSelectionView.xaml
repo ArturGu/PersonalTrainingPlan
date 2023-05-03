@@ -1,0 +1,53 @@
+﻿<Window x:Class="PersonalTrainingPlan.Views.PlanSelectionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonalTrainingPlan.Views"
+        mc:Ignorable="d"
+        Title="PersonalTrainingPlan" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen" 
+        Closing="PlanSelectionView_Closing">
+    <Grid  Background="#292D3E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <ListBox x:Name="plansBox" Style="{StaticResource TrainingListBoxStyle}" Margin="20, 20, 20, 5" Padding="20, 20, 20 , 0" Grid.Row="0" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="#2d55ff"/>
+                        <Setter Property="Margin" Value="0, 0, 0, 10"/>
+                        <Setter Property="Padding" Value="5" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource TitleTextStyle}" />
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}">
+                                <Run Text="Рівень складності: "/>
+                                <Run Text="{Binding Complexity}"/>
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}">
+                                <Run Text="Термін: "/>
+                                <Run Text="{Binding TrainingDays}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Right" Margin="0">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Повернутися"  Style="{StaticResource ButtonChooseStyle}" Click="Button_GetBack_Click"/>
+            <Button Grid.Column="1" Content="Обрати план"  Click="SelectPlanButton_Click" Style="{StaticResource ButtonChooseStyle}"/>
+        </Grid>        
+    </Grid>
+</Window>
